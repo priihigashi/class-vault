@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Class Vault</title>
+<meta name="description" content="Every class Priscila has bought, and the login each one needs.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Classes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#fff7ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#150F14" media="(prefers-color-scheme: dark)">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{color-scheme:light dark}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+/* ─────────────────────────────────────────────────────────────────
+   Class Vault — built on Priscila's own Liquid Glass system.
+   Tokens lifted verbatim from adhd-focus-coach@finish-pass-liquid-glass-2026-08-24
+   (frontend/src/index.css + App.css). Same glass-card, glass-pill,
+   metric-chip, focus-ring and primary-gloss primitives, so this page
+   sits beside her other apps instead of inventing a look.
+   ───────────────────────────────────────────────────────────────── */
+:root{
+  --graphite:#171318;
+  --graphite-soft:#342c35;
+  --cream:#fff7ee;
+  --cream-deep:#f4e5dc;
+  --ink:#241b24;
+  --muted:#71636d;
+  --line:rgba(78,48,66,.15);
+  --lilac:#c9a7ef;
+  --lilac-deep:#6c3f82;
+  --lilac-mist:rgba(223,201,247,.38);
+  --pink:#f29bc6;
+  --hot-pink:#eb4f9b;
+  --coral:#f27d68;
+  --peach:#ffb879;
+  --burnt-orange:#c65d38;
+  --attention:#ad493e;
+  --success:#55735b;
+
+  --glass-fill:rgba(255,255,255,.58);
+  --glass-fill-strong:rgba(255,252,248,.8);
+  --glass-border:rgba(255,255,255,.72);
+  --glass-shadow:0 24px 70px rgba(79,41,58,.13), inset 0 1px 0 rgba(255,255,255,.9);
+  --glass-blur:blur(26px) saturate(150%);
+
+  --pill-ink:#563448;
+  --chip-label:#6d5b66;
+  --bloom-a:rgba(255,181,122,.84);
+  --bloom-b:rgba(237,72,148,.57);
+  --bloom-c:rgba(195,145,241,.32);
+  --bloom-op:.62;
+  --hero-wash:linear-gradient(135deg,rgba(255,255,255,.76),rgba(255,244,246,.5) 45%,rgba(246,230,255,.52));
+
+  --radius:28px;
+  --radius-md:20px;
+  --radius-sm:16px;
+
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"DM Sans","Avenir Next",-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif;
+  --ease:cubic-bezier(.34,1.56,.64,1);
+}
+
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --cream:#150F14;
+    --cream-deep:#211A21;
+    --ink:#FDF3F8;
+    --muted:#A28E9C;
+    --line:rgba(255,255,255,.12);
+    --lilac:#d9bdf7;
+    --lilac-deep:#c9a7ef;
+    --pink:#f6b4d6;
+    --hot-pink:#FF6BAA;
+    --success:#7FB98A;
+    --glass-fill:rgba(255,255,255,.065);
+    --glass-fill-strong:rgba(255,255,255,.115);
+    --glass-border:rgba(255,255,255,.15);
+    --glass-shadow:0 24px 70px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.16);
+    --pill-ink:#F2D6E6;
+    --chip-label:#A28E9C;
+    --bloom-a:rgba(198,93,56,.6);
+    --bloom-b:rgba(235,79,155,.5);
+    --bloom-c:rgba(108,63,130,.48);
+    --bloom-op:.55;
+    --hero-wash:linear-gradient(135deg,rgba(255,255,255,.09),rgba(235,79,155,.1) 45%,rgba(108,63,130,.16));
+  }
+}
+:root[data-theme="dark"]{
+  --cream:#150F14;
+  --cream-deep:#211A21;
+  --ink:#FDF3F8;
+  --muted:#A28E9C;
+  --line:rgba(255,255,255,.12);
+  --lilac:#d9bdf7;
+  --lilac-deep:#c9a7ef;
+  --pink:#f6b4d6;
+  --hot-pink:#FF6BAA;
+  --success:#7FB98A;
+  --glass-fill:rgba(255,255,255,.065);
+  --glass-fill-strong:rgba(255,255,255,.115);
+  --glass-border:rgba(255,255,255,.15);
+  --glass-shadow:0 24px 70px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.16);
+  --pill-ink:#F2D6E6;
+  --chip-label:#A28E9C;
+  --bloom-a:rgba(198,93,56,.6);
+  --bloom-b:rgba(235,79,155,.5);
+  --bloom-c:rgba(108,63,130,.48);
+  --bloom-op:.55;
+  --hero-wash:linear-gradient(135deg,rgba(255,255,255,.09),rgba(235,79,155,.1) 45%,rgba(108,63,130,.16));
+}
+
+*{box-sizing:border-box;border-color:var(--line)}
+body{
+  margin:0;background:var(--cream);color:var(--ink);
+  font-family:var(--sans);font-size:15px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  -webkit-tap-highlight-color:transparent;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid rgba(235,79,155,.48);outline-offset:3px;border-radius:6px}
+::selection{background:rgba(242,125,104,.28);color:var(--ink)}
+
+/* ── colour blooms: the light the glass is standing in ── */
+.blooms{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:var(--bloom-op)}
+.blooms i{position:absolute;display:block;width:38vmax;aspect-ratio:1;border-radius:50%;filter:blur(76px);will-change:transform}
+.blooms i:nth-child(1){background:radial-gradient(circle at 35% 65%,var(--bloom-a),var(--bloom-b) 42%,transparent 70%);top:-14vmax;right:-12vmax;animation:b1 36s ease-in-out infinite}
+.blooms i:nth-child(2){background:radial-gradient(circle at 50% 50%,var(--bloom-c),transparent 68%);bottom:-16vmax;left:-14vmax;width:46vmax;animation:b2 44s ease-in-out infinite}
+.blooms i:nth-child(3){background:radial-gradient(circle at 45% 55%,var(--bloom-b),transparent 66%);top:52vh;left:26vw;width:30vmax;animation:b1 40s ease-in-out infinite reverse}
+@keyframes b1{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-6vw,7vh,0) scale(1.12)}}
+@keyframes b2{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(7vw,-6vh,0) scale(.9)}}
+@media (prefers-reduced-motion:reduce){.blooms i{animation:none}}
+
+.wrap{position:relative;z-index:1;max-width:680px;margin:0 auto;padding-inline:16px;padding-block:0 56px}
+
+/* ── glass-card: her primitive, unchanged ── */
+.glass-card{
+  position:relative;border:1px solid var(--glass-border);border-radius:var(--radius);
+  background:var(--glass-fill);
+  -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  box-shadow:var(--glass-shadow);overflow:hidden;
+}
+.glass-card::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(135deg,rgba(255,255,255,.34),transparent 32%,rgba(255,255,255,.08));
+}
+.glass-card>*{position:relative;z-index:1}
+
+/* ── glass-pill ── */
+.glass-pill{
+  display:inline-flex;align-items:center;gap:7px;width:max-content;max-width:100%;
+  padding:7px 11px;border:1px solid var(--glass-border);border-radius:999px;
+  color:var(--pill-ink);background:var(--glass-fill);
+  box-shadow:inset 0 1px rgba(255,255,255,.86);
+  font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+}
+
+/* ── chrome ── */
+header{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:40;
+  margin-inline:-16px;padding:13px 16px 12px;
+  background:var(--glass-fill-strong);
+  -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{
+  width:44px;height:44px;flex:none;border-radius:16px;display:grid;place-items:center;
+  background:var(--graphite);box-shadow:0 8px 22px rgba(23,19,24,.3);
+}
+.brand-orbit{
+  width:22px;height:22px;display:block;border:6px solid var(--lilac);
+  border-right-color:var(--pink);border-radius:50%;
+  box-shadow:0 0 18px rgba(200,183,202,.4);
+  animation:spin 9s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.brand-orbit{animation:none}}
+.brand-word{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--serif);font-weight:600;font-size:25px;letter-spacing:-.035em;margin:1px 0 0;line-height:1}
+
+/* focus-ring, her conic primitive, at header scale */
+.focus-ring{
+  --progress:0%;margin-left:auto;flex:none;
+  width:46px;aspect-ratio:1;display:grid;place-items:center;border-radius:50%;
+  background:conic-gradient(var(--hot-pink) var(--progress),var(--glass-fill) 0);
+  box-shadow:0 8px 22px rgba(199,73,127,.2),inset 0 0 0 5px var(--glass-fill);
+  transition:background .6s var(--ease);
+}
+.focus-ring::before{
+  content:"";grid-area:1/1;width:32px;aspect-ratio:1;border-radius:50%;
+  background:var(--glass-fill-strong);box-shadow:inset 0 1px rgba(255,255,255,1);
+}
+.focus-ring span{grid-area:1/1;z-index:1;font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink)}
+
+.tools{display:flex;flex-direction:column;gap:9px;margin-top:12px}
+.sbox{position:relative}
+.sbox svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--muted);pointer-events:none}
+.search{
+  width:100%;min-height:44px;padding:0 15px 0 35px;border-radius:var(--radius-sm);
+  border:1px solid var(--glass-border);background:var(--glass-fill);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  color:var(--ink);font-size:16px;box-shadow:inset 0 1px 4px rgba(62,31,49,.08);
+}
+.search::placeholder{color:var(--muted)}
+.seg{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:4px;border-radius:999px;
+  background:var(--glass-fill);border:1px solid var(--glass-border);box-shadow:inset 0 1px rgba(255,255,255,.7)}
+.seg button{
+  border:0;background:transparent;color:var(--muted);border-radius:999px;
+  font-size:12px;font-weight:700;padding:8px 4px;letter-spacing:.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  transition:color .2s,background .25s var(--ease),box-shadow .25s,transform .18s var(--ease);
+}
+.seg button b{font-variant-numeric:tabular-nums;opacity:.6;margin-left:3px}
+.seg button[aria-pressed="true"]{
+  color:var(--ink);background:var(--glass-fill-strong);
+  box-shadow:0 8px 22px rgba(71,39,56,.12),inset 0 1px rgba(255,255,255,.95);
+}
+.seg button:active{transform:scale(.96)}
+
+/* ── metric-chip row ── */
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:16px}
+.metric-chip{
+  min-height:92px;padding:15px 13px;display:flex;flex-direction:column;justify-content:space-between;gap:9px;
+  border:1px solid var(--glass-border);border-radius:var(--radius-md);
+  background:var(--glass-fill);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  box-shadow:inset 0 1px rgba(255,255,255,.9);
+}
+.metric-chip::before{content:"";width:28px;height:4px;border-radius:99px;background:var(--coral);box-shadow:0 0 16px rgba(242,125,104,.45)}
+.metric-chip.accent-lilac::before{background:var(--lilac-deep)}
+.metric-chip.accent-pink::before{background:var(--hot-pink)}
+.metric-chip.accent-peach::before{background:var(--peach)}
+.metric-chip span{color:var(--chip-label);font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;line-height:1.35}
+.metric-chip strong{font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+
+/* ── the hero: one obvious next action ── */
+.hero{
+  margin-top:16px;padding:24px 22px 22px;border-radius:var(--radius);position:relative;overflow:hidden;
+  border:1px solid var(--glass-border);
+  background:var(--hero-wash);
+  -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  box-shadow:var(--glass-shadow);
+  animation:rise .7s var(--ease) both;
+}
+.hero-bloom{
+  position:absolute;z-index:0;width:290px;height:290px;right:-90px;top:-130px;border-radius:50%;
+  background:radial-gradient(circle at 35% 65%,rgba(255,181,122,.84),rgba(237,72,148,.57) 40%,rgba(195,145,241,.32) 66%,transparent 72%);
+  filter:blur(8px);opacity:.82;pointer-events:none;
+}
+.hero>*:not(.hero-bloom){position:relative;z-index:1}
+.hero h2{font-family:var(--serif);font-weight:600;font-size:clamp(23px,5.4vw,31px);letter-spacing:-.032em;line-height:1.05;margin:16px 0 0;text-wrap:balance}
+.hero p{margin:12px 0 0;color:var(--muted);line-height:1.6;font-size:14px}
+.hero .pulse{width:6px;height:6px;border-radius:50%;background:var(--hot-pink);box-shadow:0 0 10px var(--hot-pink);animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+@keyframes rise{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+
+/* primary-gloss, her CTA primitive */
+.primary-gloss{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:50px;padding-inline:22px;margin-top:20px;
+  color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.44);border-radius:999px;
+  background:linear-gradient(135deg,#f45e88,#e66471 46%,#c55a94);
+  box-shadow:0 15px 34px rgba(207,75,119,.28),inset 0 1px rgba(255,255,255,.45),inset 0 -1px rgba(92,25,60,.22);
+  font-size:14.5px;font-weight:700;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.primary-gloss:hover{transform:translateY(-2px) scale(1.01);box-shadow:0 19px 42px rgba(207,75,119,.36),inset 0 1px rgba(255,255,255,.56)}
+.primary-gloss:active{transform:scale(.98)}
+
+/* ── sections ── */
+section{margin-top:26px}
+.shead{display:flex;align-items:baseline;gap:10px;padding-inline:8px;margin-bottom:9px;flex-wrap:wrap}
+.shead h3{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:-.025em;margin:0}
+.shead .hint{font-size:11.5px;color:var(--muted)}
+.shead .n{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums;margin-left:auto}
+
+.list{border-radius:var(--radius);overflow:hidden}
+.item{border-top:1px solid var(--line)}
+.item:first-child{border-top:0}
+.row{
+  display:grid;grid-template-columns:auto 42px 1fr auto;gap:12px;align-items:center;
+  padding:13px 14px;text-decoration:none;color:inherit;position:relative;
+  transition:transform .2s var(--ease),background .2s;
+}
+.row:active{transform:scale(.985)}
+.row:hover{background:var(--glass-fill-strong)}
+.row::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:3px;border-radius:0 3px 3px 0;background:var(--stripe,transparent)}
+.item[data-s="go"]{--stripe:var(--success)}
+.item[data-s="watch"]{--stripe:var(--burnt-orange)}
+.item[data-s="idle"]{--stripe:var(--lilac-deep)}
+
+.tick{
+  width:24px;height:24px;flex:none;border-radius:50%;padding:0;
+  border:1.8px solid var(--muted);background:transparent;
+  display:grid;place-items:center;transition:all .25s var(--ease);
+}
+.tick svg{width:12px;height:12px;opacity:0;transform:scale(.4);transition:all .25s var(--ease)}
+.tick[aria-pressed="true"]{background:var(--success);border-color:var(--success)}
+.tick[aria-pressed="true"] svg{opacity:1;transform:scale(1)}
+.tick:active{transform:scale(.88)}
+.item.done .row{opacity:.48}
+.item.done .name{text-decoration:line-through;text-decoration-color:var(--muted)}
+
+.tile{
+  width:42px;height:42px;border-radius:14px;display:grid;place-items:center;
+  font-family:var(--serif);font-weight:600;font-size:13px;letter-spacing:-.02em;color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 6px 16px rgba(71,39,56,.16);
+}
+.tile.hot{background:linear-gradient(135deg,var(--peach),var(--burnt-orange))}
+.tile.cam{background:linear-gradient(135deg,#f0817f,var(--attention))}
+.tile.sk{background:linear-gradient(135deg,var(--lilac),var(--lilac-deep))}
+.tile.ap{background:linear-gradient(135deg,var(--peach),var(--coral))}
+.tile.cd{background:linear-gradient(135deg,var(--pink),var(--hot-pink))}
+.tile.op{background:linear-gradient(135deg,#8fd9c4,var(--success))}
+.tile.zm{background:linear-gradient(135deg,#5AA6F5,#0E72ED)}
+.item[data-s="live"]{--stripe:var(--hot-pink)}
+
+.meta{min-width:0}
+.name{font-weight:500;font-size:15px;line-height:1.3;letter-spacing:-.012em}
+.by{color:var(--muted);font-size:12.5px;margin-top:3px;overflow-wrap:anywhere;line-height:1.4}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+.tag{
+  font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:3px 8px;border-radius:999px;white-space:nowrap;
+  color:var(--pill-ink);background:var(--glass-fill);border:1px solid var(--glass-border);
+  box-shadow:inset 0 1px rgba(255,255,255,.7);
+}
+.tag.go{color:var(--success);background:rgba(85,115,91,.14);border-color:transparent}
+.tag.watch{color:var(--burnt-orange);background:rgba(198,93,56,.14);border-color:transparent}
+:root[data-theme="dark"] .tag.watch{color:var(--peach);background:rgba(255,184,121,.15)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tag.watch{color:var(--peach);background:rgba(255,184,121,.15)}}
+.arrow{color:var(--muted);font-size:20px;flex:none;font-weight:400}
+.note{padding:0 16px 13px 70px;margin-top:-4px;font-size:12.5px;color:var(--muted);line-height:1.55}
+.note b{color:var(--ink);font-weight:700}
+
+/* ── account key ── */
+.key{margin-top:26px;padding:20px 18px 16px;border-radius:var(--radius)}
+.key h3{font-family:var(--serif);font-weight:600;font-size:21px;letter-spacing:-.028em;margin:0 0 4px}
+.key .lede{font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.55}
+.kr{display:flex;align-items:center;gap:11px;padding:11px 0;border-top:1px solid var(--line)}
+.kr:first-of-type{border-top:0}
+.kr .who{font-size:12.5px;color:var(--muted);flex:1;min-width:0}
+.kr .who b{display:block;color:var(--ink);font-size:14px;font-weight:700;overflow-wrap:anywhere;letter-spacing:-.015em;margin-bottom:1px}
+.kr .who em{font-style:normal;color:var(--ink);font-weight:700}
+.copy{
+  flex:none;min-height:36px;padding:0 14px;border:1px solid var(--glass-border);border-radius:999px;
+  color:var(--ink);background:var(--glass-fill);
+  box-shadow:0 8px 22px rgba(71,39,56,.09),inset 0 1px rgba(255,255,255,.9);
+  font-size:12px;font-weight:700;transition:transform .18s ease,background .18s;
+}
+.copy:hover{transform:translateY(-2px);background:var(--glass-fill-strong)}
+.copy:active{transform:scale(.94)}
+.copy.done{color:var(--success);background:rgba(85,115,91,.16)}
+
+.install{margin-top:14px;padding:15px 16px;border-radius:var(--radius-md);display:flex;gap:12px;align-items:flex-start}
+.install svg{width:19px;height:19px;flex:none;color:var(--hot-pink);margin-top:2px}
+.install p{margin:0;font-size:13px;color:var(--muted);line-height:1.55}
+.install b{color:var(--ink);font-weight:700}
+
+footer{margin-top:24px;font-size:11.5px;color:var(--muted);padding-inline:8px;line-height:1.6}
+footer p{margin:0 0 8px}
+footer a{color:var(--hot-pink);text-decoration:none;font-weight:700}
+.empty{padding:32px 16px;text-align:center;color:var(--muted);font-size:14px}
+
+.stagger{animation:rise .6s var(--ease) both}
+@media (prefers-reduced-motion:reduce){.stagger,.hero{animation:none}.pulse{animation:none}}
+
+@media (max-width:390px){
+  .row{grid-template-columns:auto 38px 1fr auto;gap:10px;padding:12px 11px}
+  .tile{width:38px;height:38px;font-size:12px}
+  .note{padding-left:61px}
+  .seg button{font-size:11px;padding:8px 2px}
+  .metric-chip{padding:13px 10px;min-height:86px}
+  .metric-chip strong{font-size:21px}
+}
+
+/* ── additions for dated / expiring classes ── */
+.seg{grid-template-columns:none;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;border-radius:999px}
+.seg::-webkit-scrollbar{display:none}
+.seg button{flex:0 0 auto;padding:8px 13px}
+.yr{
+  font-family:var(--serif);font-size:11px;font-weight:600;color:var(--muted);
+  font-variant-numeric:tabular-nums;letter-spacing:.02em;
+}
+.tag.bad{color:#fff;background:var(--attention);border-color:transparent;box-shadow:none}
+.tag.soon{color:#fff;background:var(--burnt-orange);border-color:transparent;box-shadow:none}
+.tag.old{color:var(--lilac-deep);background:rgba(201,167,239,.22);border-color:transparent}
+:root[data-theme="dark"] .tag.old{color:var(--lilac);background:rgba(201,167,239,.16)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tag.old{color:var(--lilac);background:rgba(201,167,239,.16)}}
+.item[data-s="expired"]{--stripe:var(--attention)}
+.item[data-s="refunded"]{--stripe:var(--muted)}
+.item[data-s="new"]{--stripe:var(--hot-pink)}
+.item.flag .name::after{
+  content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--attention);margin-left:7px;vertical-align:middle;
+}
+.warn{
+  margin:10px 0 0;padding:11px 13px;border-radius:14px;display:flex;gap:9px;align-items:flex-start;
+  background:rgba(173,73,62,.11);border:1px solid rgba(173,73,62,.25);
+}
+.warn svg{width:16px;height:16px;flex:none;color:var(--attention);margin-top:1px}
+.warn p{margin:0;font-size:12.5px;color:var(--ink);line-height:1.5}
+.warn b{font-weight:700}
+.money{font-variant-numeric:tabular-nums}
+</style>
+<div class="blooms" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"><span class="brand-orbit"></span></div>
+      <div>
+        <div class="brand-word" id="hello">Your classes</div>
+        <h1>Class Vault</h1>
+      </div>
+      <div class="focus-ring" id="ring"><span id="ringtxt">0</span></div>
+    </div>
+
+    <div class="tools">
+      <div class="sbox">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input class="search" id="q" type="search" placeholder="Search a class, creator or platform" aria-label="Search classes" autocomplete="off">
+      </div>
+      <div class="seg" id="seg" role="group" aria-label="Filter classes"></div>
+    </div>
+  </header>
+
+  <div class="chips" id="chips"></div>
+
+  <div class="hero">
+    <div class="hero-bloom" aria-hidden="true"></div>
+    <span class="glass-pill"><span class="pulse" aria-hidden="true"></span>Live today · 2:00–5:00 PM EDT</span>
+    <h2>Day 3 of Make Content Make Cash starts at 2pm</h2>
+    <p>A five-day live class on Zoom, run by Genflow. Days 1 and 2 have already gone. This is the only thing in your vault with a clock on it — the twenty recordings will still be there tonight, this will not.</p>
+    <a class="primary-gloss" href="https://events.zoom.us/ej/AjN1QOlpD89GHP1bbNQ6JWOzbc5JjVIKIdQ99n1YG-GEBGJHwrxv~A8biMVxuOWdCp0wB-Bqxlb9XszkDCdrZa-yzguHrlmP_dkMY5L-NECxIrh-Sf1QeOet-EZJqdsa5TWRx0bWg-Uh7x8GurcKkLMtA7-n-CC9GagQQ" target="_blank" rel="noopener">Join the Zoom →</a>
+  </div>
+
+  <div class="warn" id="topwarn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+    <p><b>Youtube Dark — ENG is your newest: Peter Jordan, 36 lessons, 0% watched. Two others have already run out.</b> Black Magra was a one-year pass bought 11 Mar 2025, so it lapsed 11 Mar 2026. Mentes Inquietas was a subscription due to renew 3 Mar 2026 — Hotmart then sent five “subscription is delayed” notices between 3 and 7 March, which means the payment never went through. Filter to <b>Expiry</b> to see just those.</p>
+  </div>
+
+  <div id="lists"></div>
+  <div class="empty" id="empty" hidden>Nothing matches that.</div>
+
+  <div class="glass-card key">
+    <h3>Which login opens what</h3>
+    <p class="lede">These get lost because they are split across three accounts, not because the links are hard to find. The addresses themselves are deliberately left off this page — it is a public URL.</p>
+    <div class="kr">
+      <div class="who"><b>Your Hotmail account</b>Every Hotmart course, plus Cademí · log in at <a href="https://sso.hotmart.com/login" target="_blank" rel="noopener" style="color:var(--hot-pink);text-decoration:none;font-weight:700">sso.hotmart.com</a></div>
+    </div>
+    <div class="kr">
+      <div class="who"><b>Your Oak Park account</b>Cameron Academy</div>
+    </div>
+    <div class="kr">
+      <div class="who"><b>Your McFolling account</b>One Peak Creator School (likely)</div>
+    </div>
+  </div>
+
+  <div class="glass-card install" id="install" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="m8 8 4-4 4 4"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+    <p>Put this on your home screen: tap <b>Share</b>, then <b>Add to Home Screen</b>. It opens full-screen and works with no signal.</p>
+  </div>
+
+  <footer>
+    <p>Purchase dates, prices and expiry come from 79 Hotmart emails in your Hotmail account, read through Composio. Cameron Academy comes from Gmail; AI&nbsp;Papito from the TickTick note <em>“NEXT CLASS $37 aipapito”</em>; the rest from your <a href="https://docs.google.com/spreadsheets/d/1IQ66TKQV_YL1qyJ-zvrNZrO8hBOFJ5Zgt_DlzUjhusg/edit" target="_blank" rel="noopener">Learning Library tracker</a>.</p>
+    <p>Ages and expiry warnings are computed in the page from the purchase date, so they stay true tomorrow. Three items have no purchase date on record and are marked as such rather than guessed.</p>
+    <p>Glass, type and colour are your own system, from <span style="white-space:nowrap">adhd-focus-coach @ finish-pass-liquid-glass-2026-08-24</span>.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+/* ── the data. bought = ISO date from the Hotmart / Cameron receipt.
+      expires = hard end of access where the product states one.
+      Ages and expiry badges are computed below, never hard-coded. ── */
+var DATA = [
+ {id:'genflow', n:'Make Content Make Cash — live on Zoom', by:'Genflow · 5-day live class', tile:'zm', t:'Z',
+  url:'https://events.zoom.us/ej/AjN1QOlpD89GHP1bbNQ6JWOzbc5JjVIKIdQ99n1YG-GEBGJHwrxv~A8biMVxuOWdCp0wB-Bqxlb9XszkDCdrZa-yzguHrlmP_dkMY5L-NECxIrh-Sf1QeOet-EZJqdsa5TWRx0bWg-Uh7x8GurcKkLMtA7-n-CC9GagQQ', s:'live',
+  live:{date:'2026-09-18', from:'2:00 PM', to:'5:00 PM', tz:'EDT', day:3, of:5},
+  note:'Day 1 and Day 2 have already run. Day 3 is today. Zoom sends the reminder to your Hotmail the morning of each session.'},
+
+ {id:'ytdark', n:'Youtube Dark — ENG', by:'Peter Jordan · Hotmart', tile:'hot', t:'H',
+  url:'https://hotmart.com/en/club/youtube-dark-eng/products/8518876', bought:'2026-09-17',
+  price:'US$82.98', s:'new', acct:'hotmail', lessons:36, pct:0,
+  note:'Building high-performing faceless YouTube channels. Starts with Dark Channel Fundamentals, then Niche Research. Paid in 2× US$41.49 by Apple Pay, billed as Petaxxon Informática. Creator support: cursos@cyberclass.com.br.'},
+
+ {id:'cam-prep', n:'Exam Prep — FL Real Estate Sales Associate & Broker', by:'Cameron Academy', tile:'cam', t:'CA',
+  url:'https://cameronacademy.com/my-account/', bought:'2026-09-10', s:'new', acct:'oakpark',
+  flag:true, warn:'Enrolled, but a second email asks for the student registration form — that form, not the payment, is what keeps it locked.',
+  expires:'2026-12-09', expNote:'90-day access from enrolment'},
+
+ {id:'formato-criativo', n:'Formato Criativo de Conteúdo', by:'Hanah & Alef Adventures · Hotmart', tile:'hot', t:'H',
+  url:'https://consumer.hotmart.com', bought:'2026-02-27', price:'US$60', s:'ready', acct:'hotmail', bundle:true,
+  note:'US$60 bought you six separate courses, each with its own Access button in your Hotmart library. They are listed individually below so none of them gets forgotten inside the bundle.'},
+
+ {id:'lucro-direct', n:'Lucro no Direct', by:'Hanah & Alef Adventures · Hotmart', tile:'hot', t:'H',
+  url:'https://consumer.hotmart.com', bought:'2026-02-27', s:'ready', acct:'hotmail', bundle:true},
+
+ {id:'edicao-futuro', n:'Edição do Futuro', by:'Hanah & Alef Adventures · Hotmart', tile:'hot', t:'H',
+  url:'https://consumer.hotmart.com', bought:'2026-02-27', s:'ready', acct:'hotmail', bundle:true},
+
+ {id:'sofia', n:'SOFIA', by:'Hanah & Alef Adventures · Hotmart', tile:'hot', t:'H',
+  url:'https://consumer.hotmart.com', bought:'2026-02-27', s:'ready', acct:'hotmail', bundle:true},
+
+ {id:'trello32', n:'Trello 32 Nichos', by:'Hanah & Alef Adventures · Hotmart', tile:'hot', t:'H',
+  url:'https://consumer.hotmart.com', bought:'2026-02-27', s:'ready', acct:'hotmail', bundle:true},
+
+ {id:'16ideias', n:'16 Ideias', by:'Hanah & Alef Adventures · Hotmart', tile:'hot', t:'H',
+  url:'https://consumer.hotmart.com', bought:'2026-02-27', s:'ready', acct:'hotmail', bundle:true},
+
+ {id:'ganchos', n:'100 Ganchos Estratégicos', by:'Dailton Rolim · Hotmart', tile:'hot', t:'H',
+  url:'https://hotmart.com/en/club/treinamentos-do-dailtinho/products/5972228', bought:'2026-02-23', s:'ready', acct:'hotmail'},
+
+ {id:'formatos-dailtim', n:'Formatos do Dailtim', by:'Dailton Rolim · Hotmart', tile:'hot', t:'H',
+  url:'https://hotmart.com/en/club/treinamentos-do-dailtinho/products/5972360', bought:'2026-02-23', s:'ready', acct:'hotmail'},
+
+ {id:'academia', n:'Academia dos Criadores Estratégicos', by:'Dailton Rolim · Hotmart', tile:'hot', t:'H',
+  url:'https://hotmart.com/en/club/treinamentos-do-dailtinho/products/5972178', bought:'2026-02-23', s:'ready', acct:'hotmail'},
+
+ {id:'ia-pratica', n:'Método IA na Prática', by:'Bruno Hilel · Hotmart', tile:'hot', t:'H',
+  url:'https://consumer.hotmart.com', bought:'2026-01-03', s:'ready', acct:'hotmail', unopened:true,
+  note:'Hotmart sent “Missing out on your product?” and “we miss you” on 10–11 Jan 2026 — their way of saying it was never opened.'},
+
+ {id:'render-ia', n:'Render com IA', by:'BM Maquetes Eletrônicas · Hotmart', tile:'hot', t:'H',
+  url:'https://hotmart.com/en/club/bm-maquetes/products/6733234', bought:'2025-12-30', s:'ready', acct:'hotmail'},
+
+ {id:'blackmagra', n:'Black Magra — 1 ano de acesso', by:'Hotmart', tile:'hot', t:'H',
+  url:'https://consumer.hotmart.com', bought:'2025-03-11', expires:'2026-03-11',
+  expNote:'sold as exactly one year of access', s:'expired', acct:'hotmail', flag:true,
+  warn:'The product name says “1 ano de acesso”, so the pass ran out a year after purchase. Check Hotmart before assuming you can still open it.'},
+
+ {id:'tdah', n:'Mentes Inquietas — Superando o TDAH', by:'Hotmart · subscription', tile:'hot', t:'H',
+  url:'https://hotmart.com/en/club/curso-mentes-inquietas-superando-o-tdah/products/4966305', bought:'2025-03-03', expires:'2026-03-03',
+  expNote:'renewal date Hotmart announced on 24 Feb 2026', s:'expired', acct:'hotmail', flag:true,
+  warn:'Hotmart sent five “The subscription is delayed” notices on 3, 4, 5, 6 and 7 March 2026. A renewal that repeats like that did not go through — settle or cancel it rather than re-buying.'},
+
+ {id:'pev', n:'CÓDIGO PEV — posta, engaja e vende', by:'Clara Siqueira · Engajaflix · Cademí', tile:'cd', t:'C',
+  url:'https://codigopevpostaengajaevende.club.hotmart.com', bought:'2023-02-09', s:'ready', acct:'hotmail',
+  note:'A password-reset instruction email arrived the same day in 2023 and the reset never completed. Expect to reset again.'},
+
+ {id:'metodod7', n:'Método D7', by:'Hotmart', tile:'hot', t:'H',
+  url:'https://cursometodod7d.club.hotmart.com', bought:'2024-01-25', s:'ready', acct:'hotmail',
+  note:'The 25 Jan 2024 Hotmart email was titled only “Your access information” with no product name. Its access link points at the Método D7 members area, which is how this one finally got a name.'},
+
+ {id:'supernova', n:'Método Supernova', by:'Hotmart', tile:'hot', t:'H',
+  url:'https://consumer.hotmart.com', bought:'2023-01-28', s:'ready', acct:'hotmail'},
+
+ {id:'engajamento', n:'[E-BOOK] Desafio do Engajamento', by:'Hotmart', tile:'hot', t:'H',
+  url:'https://consumer.hotmart.com', bought:'2021-09-15', s:'ready', acct:'hotmail'},
+
+ {id:'copywriting', n:'Copywriting para Negócios', by:'Hotmart', tile:'hot', t:'H',
+  url:'https://consumer.hotmart.com', bought:'2021-09-12', s:'ready', acct:'hotmail'},
+
+ {id:'trafego', n:'Analista de Tráfego Pago', by:'Silvio Roberto dos Santos · Hotmart', tile:'hot', t:'H',
+  url:'https://consumer.hotmart.com', bought:'2021-07-31', price:'US$19', s:'ready', acct:'hotmail'},
+
+ {id:'fatorc', n:'O Fator C', by:'Hotmart · subscription', tile:'hot', t:'H',
+  url:'https://consumer.hotmart.com', bought:'2023-01-02', s:'refunded',
+  note:'You cancelled the renewal on 3 Jan 2023 and Hotmart processed the refund on 9 Jan. Listed only so it is not mistaken for something you still own.'},
+
+ {id:'aipapito', n:'AI Papito', by:'Abhi Kala · aipapito.com', tile:'ap', t:'AP',
+  url:'https://aipapito.com', s:'recover',
+  note:'The “papi AI” one you could never name. Matched from your TickTick note “NEXT CLASS $37 aipapito”. No receipt in either mailbox, so the purchase is unconfirmed — check the account before paying again.'},
+
+ {id:'onepeak', n:'One Peak Creator School', by:'One Peak Creative', tile:'op', t:'OP',
+  url:'https://findyourpeak.onepeakcreative.com/login', s:'recover', acct:'mcfolling',
+  note:'Likely already bought on the McFolling address. Log in and list what is actually in there before considering Format Finder.'},
+
+ {id:'publicai', n:'PublicAI', by:'Skool', tile:'sk', t:'S',
+  url:'https://www.skool.com', s:'recover',
+  note:'Surfaced in an earlier inbox audit. Which login it belongs to is still unknown.'},
+
+ {id:'fl63', n:'Florida 63-Hour Pre-License Course', by:'Cameron Academy', tile:'cam', t:'CA',
+  url:'https://cameronacademy.com/', s:'wishlist', price:'US$83–249',
+  note:'Required — your earlier certificate has expired. You asked Cameron about the Livestream upgrade on 7 Sep and they confirmed you can switch any time inside the 90-day window.'},
+
+ {id:'viralyou', n:'Viral You: Organic Growth', by:'Sarah Snow · Skool', tile:'sk', t:'S',
+  url:'https://www.skool.com/viralyou/about', s:'wishlist', price:'US$197/mo'},
+
+ {id:'aicreatorlab', n:'AI Creator Lab', by:'Skool', tile:'sk', t:'S',
+  url:'https://www.skool.com/aicreatorlab/about', s:'wishlist', price:'US$57/mo'}
+];
+
+var GROUPS = [
+ {s:'live',     h:'Happening today',             hint:'has a clock on it'},
+ {s:'new',      h:'Just bought',                 hint:'newest first'},
+ {s:'expired',  h:'Ran out — deal with these',   hint:''},
+ {s:'ready',    h:'Paid for — go study',         hint:'Hotmart uses your Hotmail'},
+ {s:'recover',  h:'Find the login before you re-buy', hint:''},
+ {s:'wishlist', h:'Wanted, not bought',          hint:'check the list above first'},
+ {s:'refunded', h:'Refunded — you do not own this', hint:''}
+];
+
+var FILTERS = [
+ {f:'all',      l:'All'},
+ {f:'live',     l:'Today \u25CF'},
+ {f:'new',      l:'New'},
+ {f:'ready',    l:'Ready'},
+ {f:'expiry',   l:'Expiry ⚠'},
+ {f:'old',      l:'Over 1 yr'},
+ {f:'recover',  l:'Recover'},
+ {f:'wishlist', l:'Wishlist'}
+];
+
+var NOW = new Date();
+var DAY = 86400000;
+var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function d(iso){ var p = iso.split('-'); return new Date(+p[0], +p[1]-1, +p[2]); }
+function fmt(iso){ var x = d(iso); return x.getDate()+' '+MONTHS[x.getMonth()]+' '+x.getFullYear(); }
+function daysBetween(a,b){ return Math.round((b-a)/DAY); }
+
+/* age in whole years/months, for the "older than a year" mark */
+function ageLabel(iso){
+  var days = daysBetween(d(iso), NOW);
+  if (days < 365) return null;
+  var y = Math.floor(days/365);
+  return y + (y===1 ? ' yr old' : ' yrs old');
+}
+function expiryState(it){
+  if (!it.expires) return null;
+  var left = daysBetween(NOW, d(it.expires));
+  if (left < 0)  return {cls:'bad',  txt:'Expired '+fmt(it.expires), kind:'expired'};
+  if (left <= 60) return {cls:'soon', txt:'Expires '+fmt(it.expires)+' · '+left+'d', kind:'soon'};
+  return {cls:'', txt:'Access until '+fmt(it.expires), kind:'ok'};
+}
+
+var LS = {
+  get:function(k,dv){try{var v=localStorage.getItem(k);return v===null?dv:v;}catch(e){return dv;}},
+  set:function(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+};
+var done = {};
+try { done = JSON.parse(LS.get('cv-done','{}')) || {}; } catch(e){ done = {}; }
+
+function esc(x){ return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+var TICK = '<button class="tick" type="button" aria-pressed="false">'
+  + '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></button>';
+
+function rowHTML(it){
+  var age = it.bought ? ageLabel(it.bought) : null;
+  var exp = expiryState(it);
+  var tags = [];
+
+  if (it.live) {
+    var when = d(it.live.date), today = new Date(NOW.getFullYear(), NOW.getMonth(), NOW.getDate());
+    var dd = daysBetween(today, when);
+    var lbl = dd === 0 ? 'Today' : dd === 1 ? 'Tomorrow' : dd < 0 ? 'Ended '+fmt(it.live.date) : fmt(it.live.date);
+    tags.push('<span class="tag '+(dd===0?'bad':dd>0?'soon':'')+'">'+lbl+' '+it.live.from+'\u2013'+it.live.to+' '+it.live.tz+'</span>');
+    tags.push('<span class="tag">Day '+it.live.day+' of '+it.live.of+'</span>');
+  }
+  else if (it.bought) tags.push('<span class="yr">'+fmt(it.bought)+'</span>');
+  else tags.push('<span class="tag">No receipt on record</span>');
+
+  if (exp) tags.push('<span class="tag '+exp.cls+'">'+esc(exp.txt)+'</span>');
+  if (age) tags.push('<span class="tag old">'+age+'</span>');
+  if (it.price) tags.push('<span class="tag money">'+esc(it.price)+'</span>');
+  if (it.lessons) tags.push('<span class="tag">'+it.lessons+' lessons</span>');
+  if (typeof it.pct === 'number') tags.push('<span class="tag '+(it.pct===0?'watch':'go')+'">'+it.pct+'% watched</span>');
+  if (it.bundle) tags.push('<span class="tag old">In the US$60 bundle</span>');
+  if (it.unopened) tags.push('<span class="tag watch">Never opened</span>');
+  if (it.s === 'refunded') tags.push('<span class="tag">Refunded</span>');
+  if (it.acct) tags.push('<span class="tag">'+esc(it.acct)+'</span>');
+
+  var search = (it.n+' '+it.by+' '+(it.note||'')+' '+(it.warn||'')+' '+(it.bought||'')).toLowerCase();
+
+  return '<div class="item'+(it.flag?' flag':'')+'" data-s="'+it.s+'" data-id="'+it.id+'"'
+    + ' data-exp="'+(exp?exp.kind:'')+'" data-old="'+(age?'1':'')+'" data-t="'+esc(search)+'">'
+    + '<a class="row" href="'+it.url+'" target="_blank" rel="noopener">'
+    + TICK
+    + '<div class="tile '+it.tile+'">'+it.t+'</div>'
+    + '<div class="meta"><div class="name">'+esc(it.n)+'</div>'
+    + '<div class="by">'+esc(it.by)+'</div>'
+    + '<div class="tags">'+tags.join('')+'</div></div>'
+    + '<span class="arrow" aria-hidden="true">›</span></a>'
+    + (it.warn ? '<div class="warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg><p>'+it.warn+'</p></div>' : '')
+    + (it.note ? '<div class="note">'+it.note+'</div>' : '')
+    + '</div>';
+}
+
+/* newest first inside every group; undated items sink to the bottom */
+function byNewest(a,b){
+  if (!a.bought && !b.bought) return 0;
+  if (!a.bought) return 1;
+  if (!b.bought) return -1;
+  return d(b.bought) - d(a.bought);
+}
+
+var lists = document.getElementById('lists');
+lists.innerHTML = GROUPS.map(function(g){
+  var rows = DATA.filter(function(i){ return i.s === g.s; }).sort(byNewest);
+  if (!rows.length) return '';
+  return '<section data-sec data-group="'+g.s+'">'
+    + '<div class="shead"><h3>'+g.h+'</h3>'
+    + (g.hint ? '<span class="hint">'+g.hint+'</span>' : '')
+    + '<span class="n">'+rows.length+'</span></div>'
+    + '<div class="glass-card list">'+rows.map(rowHTML).join('')+'</div></section>';
+}).join('');
+
+/* headline numbers */
+var owned    = DATA.filter(function(i){ return i.s==='new'||i.s==='ready'||i.s==='expired'; });
+var liveToday= DATA.filter(function(i){ return i.live && daysBetween(new Date(NOW.getFullYear(),NOW.getMonth(),NOW.getDate()), d(i.live.date)) === 0; });
+var expired  = DATA.filter(function(i){ var e=expiryState(i); return e && (e.kind==='expired'||e.kind==='soon'); });
+var monthly  = DATA.filter(function(i){ return i.s==='wishlist' && /\/mo/.test(i.price||''); })
+                   .reduce(function(sum,i){ return sum + parseFloat(String(i.price).replace(/[^0-9.]/g,'')); }, 0);
+
+document.getElementById('chips').innerHTML =
+    '<div class="metric-chip accent-peach"><span>Classes you have paid for</span><strong>'+owned.length+'</strong></div>'
+  + '<div class="metric-chip"><span>Expired or expiring</span><strong>'+expired.length+'</strong></div>'
+  + '<div class="metric-chip accent-pink"><span>Per month not signed up</span><strong>$'+monthly+'</strong></div>';
+
+/* filters */
+var seg = document.getElementById('seg');
+seg.innerHTML = FILTERS.map(function(f,i){
+  var n;
+  if (f.f==='all')          n = DATA.length;
+  else if (f.f==='expiry')  n = expired.length;
+  else if (f.f==='old')     n = DATA.filter(function(i2){ return i2.bought && ageLabel(i2.bought); }).length;
+  else                      n = DATA.filter(function(i2){ return i2.s===f.f; }).length;
+  return '<button type="button" data-f="'+f.f+'" aria-pressed="'+(i===0)+'">'+f.l+' <b>'+n+'</b></button>';
+}).join('');
+
+var items = [].slice.call(document.querySelectorAll('.item'));
+var q = document.getElementById('q');
+var empty = document.getElementById('empty');
+var topwarn = document.getElementById('topwarn');
+var filter = 'all';
+
+function matches(it){
+  if (filter === 'all')    return true;
+  if (filter === 'expiry') return it.dataset.exp === 'expired' || it.dataset.exp === 'soon' || it.dataset.s === 'live';
+  if (filter === 'old')    return it.dataset.old === '1';
+  return it.dataset.s === filter;
+}
+function apply(){
+  var term = q.value.trim().toLowerCase(), shown = 0;
+  items.forEach(function(it){
+    var on = matches(it) && (!term || it.dataset.t.indexOf(term) > -1);
+    it.hidden = !on;
+    if (on) shown++;
+  });
+  [].forEach.call(document.querySelectorAll('[data-sec]'), function(s){
+    s.hidden = !s.querySelector('.item:not([hidden])');
+  });
+  empty.hidden = shown > 0;
+  topwarn.hidden = (filter !== 'all' && filter !== 'expiry') || !!term;
+}
+seg.addEventListener('click', function(e){
+  var b = e.target.closest('button'); if (!b) return;
+  [].forEach.call(seg.children, function(o){ o.setAttribute('aria-pressed', String(o === b)); });
+  filter = b.dataset.f; apply();
+});
+q.addEventListener('input', apply);
+
+/* done state + header ring */
+var ring = document.getElementById('ring'), ringtxt = document.getElementById('ringtxt');
+function paintRing(){
+  var n = items.filter(function(it){ return done[it.dataset.id]; }).length;
+  ring.style.setProperty('--progress', (n / items.length * 100) + '%');
+  ringtxt.textContent = String(n);
+  ring.setAttribute('title', n + ' of ' + items.length + ' marked done');
+}
+items.forEach(function(it){
+  var t = it.querySelector('.tick');
+  function paint(){
+    var on = !!done[it.dataset.id];
+    t.setAttribute('aria-pressed', String(on));
+    it.classList.toggle('done', on);
+    t.setAttribute('aria-label', (on ? 'Mark not done: ' : 'Mark done: ') + it.querySelector('.name').textContent);
+  }
+  t.addEventListener('click', function(e){
+    e.preventDefault(); e.stopPropagation();
+    if (done[it.dataset.id]) delete done[it.dataset.id]; else done[it.dataset.id] = 1;
+    LS.set('cv-done', JSON.stringify(done));
+    paint(); paintRing();
+    if (navigator.vibrate) try { navigator.vibrate(8); } catch(e2){}
+  });
+  paint();
+});
+paintRing();
+
+[].forEach.call(document.querySelectorAll('.copy'), function(b){
+  b.addEventListener('click', function(){
+    var txt = b.dataset.c, label = b.textContent;
+    var fin = function(){ b.textContent = 'Copied'; b.classList.add('done');
+      setTimeout(function(){ b.textContent = label; b.classList.remove('done'); }, 1400); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(fin, fin);
+    else { var ta = document.createElement('textarea'); ta.value = txt; ta.setAttribute('readonly','');
+      ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch(e){} document.body.removeChild(ta); fin(); }
+  });
+});
+
+var h = NOW.getHours();
+document.getElementById('hello').textContent =
+  h<5 ? 'Still up' : h<12 ? 'Good morning' : h<18 ? 'Good afternoon' : 'Good evening';
+
+[].slice.call(document.querySelectorAll('.chips,[data-sec],.key')).forEach(function(g,i){
+  g.classList.add('stagger'); g.style.animationDelay = (0.05 + i*0.06) + 's';
+});
+
+if (/iPad|iPhone|iPod/.test(navigator.userAgent||'') &&
+    !(window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true))
+  document.getElementById('install').hidden = false;
+
+if ('serviceWorker' in navigator && location.protocol === 'https:')
+  window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
+})();
+</script>
+
+</body>
+</html>

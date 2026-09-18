@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Class Vault">
+  <rect width="64" height="64" rx="15" fill="#171318"/>
+  <!-- the brand orbit: lilac ring, hot-pink on the right quadrant -->
+  <circle cx="32" cy="32" r="13" fill="none" stroke="#c9a7ef" stroke-width="8"/>
+  <path d="M32 19a13 13 0 0 1 0 26" fill="none" stroke="#f29bc6" stroke-width="8" stroke-linecap="butt"/>
+  <circle cx="32" cy="32" r="5.5" fill="#fff7ee"/>
+</svg>

@@ -299,7 +299,12 @@ section{margin-top:26px}
 }
 .row:active{transform:scale(.985)}
 .row:hover{background:var(--glass-fill-strong)}
-.row::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:3px;border-radius:0 3px 3px 0;background:var(--stripe,transparent)}
+.item{position:relative}
+/* the status stripe belongs to the whole card, notes included — on .row it stopped
+   short wherever a note followed, which read as broken rather than deliberate */
+.item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--stripe,transparent)}
+.item:first-child::before{border-radius:var(--radius) 0 0 0}
+.item:last-child::before{border-radius:0 0 0 var(--radius)}
 .item[data-s="go"]{--stripe:var(--success)}
 .item[data-s="watch"]{--stripe:var(--burnt-orange)}
 .item[data-s="idle"]{--stripe:var(--lilac-deep)}
@@ -506,8 +511,9 @@ var DATA = [
 
  {id:'cam-prep', n:'Exam Prep — FL Real Estate Sales Associate & Broker', by:'Cameron Academy', tile:'cam', t:'CA',
   url:'https://cameronacademy.com/my-account/', bought:'2026-09-10', s:'new', acct:'oakpark',
-  flag:true, warn:'Enrolled, but a second email asks for the student registration form — that form, not the payment, is what keeps it locked.',
-  expires:'2026-12-09', expNote:'90-day access from enrolment'},
+  price:'US$19.99/mo', flag:true,
+  warn:'THIS COUNTS FOR NOTHING TOWARD THE LICENCE. Cameron\u2019s own page says attendance is unaccredited and you must buy a class enrolment for accreditation and the final exam. It is optional practice material \u2014 question bank, flashcards, mock exam, AI tutor \u2014 taken alongside the required 63-hour course, never instead of it. It is a $19.99/month subscription after a 14-day free trial, so the first charge lands around 24 Sep 2026. Cancel any time, no minimum. Keep it only while actually studying.',
+  note:'Also still unopened: a second email asks for the student registration form, and that form, not the payment, is what keeps the material locked.'},
 
  {id:'formato-criativo', n:'Formato Criativo de Conteúdo', by:'Hanah & Alef Adventures · Hotmart', tile:'hot', t:'H',
   url:'https://consumer.hotmart.com', bought:'2026-02-27', price:'US$60', s:'ready', acct:'hotmail', bundle:true,
@@ -545,12 +551,12 @@ var DATA = [
   url:'https://hotmart.com/en/club/bm-maquetes/products/6733234', bought:'2025-12-30', s:'ready', acct:'hotmail'},
 
  {id:'blackmagra', n:'Black Magra — 1 ano de acesso', by:'Hotmart', tile:'hot', t:'H',
-  url:'https://consumer.hotmart.com', bought:'2025-03-11', expires:'2026-03-11',
+  url:'https://consumer.hotmart.com', bought:'2025-03-11', expires:'2026-03-11', price:'US$21',
   expNote:'sold as exactly one year of access', s:'expired', acct:'hotmail', flag:true,
   warn:'The product name says “1 ano de acesso”, so the pass ran out a year after purchase. Check Hotmart before assuming you can still open it.'},
 
  {id:'tdah', n:'Mentes Inquietas — Superando o TDAH', by:'Hotmart · subscription', tile:'hot', t:'H',
-  url:'https://hotmart.com/en/club/curso-mentes-inquietas-superando-o-tdah/products/4966305', bought:'2025-03-03', expires:'2026-03-03',
+  url:'https://hotmart.com/en/club/curso-mentes-inquietas-superando-o-tdah/products/4966305', bought:'2025-03-03', expires:'2026-03-03', price:'US$49',
   expNote:'renewal date Hotmart announced on 24 Feb 2026', s:'expired', acct:'hotmail', flag:true,
   warn:'Hotmart sent five “The subscription is delayed” notices on 3, 4, 5, 6 and 7 March 2026. A renewal that repeats like that did not go through — settle or cancel it rather than re-buying.'},
 
@@ -579,8 +585,8 @@ var DATA = [
   note:'You cancelled the renewal on 3 Jan 2023 and Hotmart processed the refund on 9 Jan. Listed only so it is not mistaken for something you still own.'},
 
  {id:'aipapito', n:'AI Papito', by:'Abhi Kala · aipapito.com', tile:'ap', t:'AP',
-  url:'https://aipapito.com', s:'recover',
-  note:'The “papi AI” one you could never name. Matched from your TickTick note “NEXT CLASS $37 aipapito”. No receipt in either mailbox, so the purchase is unconfirmed — check the account before paying again.'},
+  url:'https://aipapito.com', s:'recover', unpaid:true,
+  note:'The “papi AI” one you could never name — aipapito.com, run by Abhi Kala, AI training for creatives. NO PURCHASE FOUND ANYWHERE: nothing in the Hotmail, Oak Park or McFolling mailboxes, and no charge in the card feed back to Jan 2024. The only trace is your TickTick note “NEXT CLASS $37 aipapito”, which reads like something you meant to buy rather than something you own. Treat this as a wishlist item until a login proves otherwise.'},
 
  {id:'onepeak', n:'One Peak Creator School', by:'One Peak Creative', tile:'op', t:'OP',
   url:'https://findyourpeak.onepeakcreative.com/login', s:'recover', acct:'mcfolling',
@@ -591,8 +597,9 @@ var DATA = [
   note:'Surfaced in an earlier inbox audit. Which login it belongs to is still unknown.'},
 
  {id:'fl63', n:'Florida 63-Hour Pre-License Course', by:'Cameron Academy', tile:'cam', t:'CA',
-  url:'https://cameronacademy.com/', s:'wishlist', price:'US$83–249',
-  note:'Required — your earlier certificate has expired. You asked Cameron about the Livestream upgrade on 7 Sep and they confirmed you can switch any time inside the 90-day window.'},
+  url:'https://cameronacademy.com/professions/real-estate/', s:'wishlist', price:'US$249',
+  flag:true,
+  note:'THIS is the one that actually earns the licence \u2014 FREC Course I, 63 hours, from an approved provider, passed at 70%+. A completion certificate is only valid 2 years, and yours expired, so the full 63 hours must be retaken. Cameron prices: US$249 self-paced with 90-day access \u00b7 US$395 livestream \u00b7 US$495 in person \u00b7 US$105 fingerprints. After this comes the DBPR RE 1 application (~$62.75), Livescan fingerprints, then the Pearson VUE exam (100 questions, 75 to pass). No 63-hour + exam-prep bundle is advertised \u2014 worth one phone call before paying twice.'},
 
  {id:'viralyou', n:'Viral You: Organic Growth', by:'Sarah Snow · Skool', tile:'sk', t:'S',
   url:'https://www.skool.com/viralyou/about', s:'wishlist', price:'US$197/mo'},
@@ -601,15 +608,77 @@ var DATA = [
   url:'https://www.skool.com/aicreatorlab/about', s:'wishlist', price:'US$57/mo'}
 ];
 
-var GROUPS = [
- {s:'live',     h:'Happening today',             hint:'has a clock on it'},
- {s:'new',      h:'Just bought',                 hint:'newest first'},
- {s:'expired',  h:'Ran out — deal with these',   hint:''},
- {s:'ready',    h:'Paid for — go study',         hint:'Hotmart uses your Hotmail'},
- {s:'recover',  h:'Find the login before you re-buy', hint:''},
- {s:'wishlist', h:'Wanted, not bought',          hint:'check the list above first'},
- {s:'refunded', h:'Refunded — you do not own this', hint:''}
-];
+/* ── What each class actually is, and how long access lasts. ──────────────
+   Researched 2026-09-18 against each producer's own sales page. term/termDays
+   drive a computed expiry below, so a 1-year product bought today warns on its
+   own next year without anyone editing this file. Where a producer publishes
+   NO access term, that is recorded honestly as unknown rather than guessed —
+   her Hotmart account (Minhas Compras) shows the real per-product expiry and
+   is the one screen that would settle them all. */
+var INFO = {
+ ytdark:{cat:'YouTube & video', what:'Building faceless “dark” YouTube channels — picking a niche, producing without appearing on camera, SEO and monetisation.',
+   termDays:365, term:'1 year', termNote:'producer states 1 year (12 months) of access to all training content'},
+ 'cam-prep':{cat:'Real estate licence', what:'Practice material for the Florida Sales Associate exam: 600+ questions, flashcards, mock exam, AI tutor.', term:'$19.99/mo subscription'},
+ 'formato-criativo':{cat:'Instagram & content', what:'Reverse-engineering the video formats Instagram already pushes, then converting that audience into sales.',
+   termDays:365, term:'1 year', termNote:'sales page states “1 ano de acesso”'},
+ 'lucro-direct':{cat:'Instagram & content', what:'Turning Instagram DMs into sales, with ready-made reply scripts.', termDays:365, term:'1 year', termNote:'bonus inside the bundle, inherits its 1-year term'},
+ 'edicao-futuro':{cat:'Instagram & content', what:'A six-lesson editing module covering the tools and techniques behind the formats.', termDays:365, term:'1 year', termNote:'module inside the bundle'},
+ sofia:{cat:'Instagram & content', what:'An AI script assistant used inside the course to generate content — a lesson, not a standalone product.', termDays:365, term:'1 year', termNote:'inside the bundle'},
+ trello32:{cat:'Instagram & content', what:'32 niches mapped with proven viral ideas, each linked to the real video it came from.', termDays:365, term:'1 year', termNote:'bonus inside the bundle'},
+ '16ideias':{cat:'Instagram & content', what:'The adaptable idea set inside the 32-niche arsenal — not a separate course.', termDays:365, term:'1 year', termNote:'inside the bundle'},
+ ganchos:{cat:'Instagram & content', what:'100+ ready-made, editable video opening hooks — swap the keyword for your niche. A swipe file, not a course.', term:'not published'},
+ 'formatos-dailtim':{cat:'Instagram & content', what:'Seven viral video formats to test until you find the one that suits how you are on camera.', term:'not published'},
+ academia:{cat:'Instagram & content', what:'His flagship: 32–48 lessons on Instagram video — scripting, hooks, engagement, turning it into a product.',
+   term:'probably not lifetime', termWarn:'He sells a SEPARATE upsell literally called “Atualização Vitalícia”, which implies the base purchase is not lifetime. The official page never claims lifetime. Treat as time-limited until your Hotmart account proves otherwise.'},
+ 'ia-pratica':{cat:'AI', what:'Making commercial content end to end with AI — realistic images, 3D characters, full advertising films, voice and soundtrack. 60+ lessons.', term:'not published'},
+ 'render-ia':{cat:'AI', what:'Using AI to turn SketchUp or basic 3D into realistic architectural renders in a few clicks.', term:'not published',
+   termWarn:'Their terms revoke access for shared logins — one user only.'},
+ blackmagra:{cat:'Health', what:'A 7-day intermittent-fasting metabolic challenge by Dr. Bruno Monteze — live sessions, fasting schedule, diet, audios and e-books.',
+   term:'1 year', termNote:'sold explicitly as “1 ano de acesso”'},
+ tdah:{cat:'Health', what:'ADHD explained by Dra. Ana Beatriz Barbosa Silva, the psychiatrist behind the book — ADHD as a fast, idea-rich way of thinking to be directed rather than a disease.', term:'subscription, renewal failed'},
+ pev:{cat:'Instagram & content', what:'A ready-made 90-day calendar of Instagram stories and posts you copy straight into your profile.', term:'not published',
+   termWarn:'You believe this one is lifetime. The producer publishes no access term, so your Hotmart account is the only way to confirm it.'},
+ supernova:{cat:'Unidentified', what:'At least four different Hotmart products share this name — Instagram growth, launch ads, AI prompts, and a Spanish sales-page course.',
+   term:'unknown', termWarn:'Cannot say what this is until you open it and tell me which one. Your members area name does not disambiguate.'},
+ metodod7:{cat:'Unidentified', what:'A “7-day challenge” promising income from your phone with no computer skills. Has a Reclame Aqui complaint record.', term:'not published'},
+ engajamento:{cat:'Instagram & content', what:'An e-book of 16 challenge-format strategies to raise Instagram engagement.', term:'not published',
+   termWarn:'Two producers sell a product by this name. Yours is the e-book, so most likely Ana Carolina Fernandes — worth confirming when you open it.'},
+ copywriting:{cat:'Unidentified', what:'Persuasive sales writing. At least three different products use this exact name.',
+   term:'unknown', termWarn:'Cannot pin down which one you own without the producer name from your Hotmart account.'},
+ trafego:{cat:'Ads & traffic', what:'Full paid-traffic training — creating, testing, optimising and scaling ad campaigns on Facebook, Instagram and WhatsApp.',
+   term:'not published', termWarn:'Looks DISCONTINUED. The producer\u2019s site is dead and only piracy indexes remain. If you still have access, that access is the only copy and there is no support to renew through.'},
+ fatorc:{cat:'Instagram & content', what:'A content-creator course about building influence from zero.', term:'refunded'},
+ aipapito:{cat:'AI', what:'AI training for creatives by Abhi Kala, a New Zealand AI educator — images, video, node workflows, AI influencer kits.',
+   term:'free tier likely', termWarn:'His paid tier is a $47/month membership, and there is a real, prominent FREE tier: a 6-lesson training plus live webinars. No charge for this ever appears in your card feed and no receipt exists in any mailbox. The most likely truth is you signed up for the free training. The “$37” in your note matches nothing on his live site.'},
+ onepeak:{cat:'YouTube & video', what:'Short-form video training from One Peak Creative, a Los Angeles agency — TikTok and Reels, hooks, scripting, being comfortable on camera.',
+   term:'LIFETIME', termNote:'their checkout states lifetime access, so you were right',
+   termWarn:'Careful: their OTHER product, Format Finder, is a separate subscription at $29–$97/month. If One Peak is billing you monthly, it is that or a course payment plan, not the school.'},
+ publicai:{cat:'AI', what:'A free Skool community about AI run by Sirio Berati — around 4,800 members, workflows and live calls, deliberately anti-paywall.',
+   term:'FREE', termNote:'no paid tier exists, so it cannot be costing you anything'},
+ genflow:{cat:'Instagram & content', what:'A five-day live Zoom class on earning from content without a big following. Genflow is a London creator-commerce agency; the class is run through their education arm, Creator College, built with creator Jun Yuh.',
+   term:'FREE masterclass', termNote:'free to attend',
+   termWarn:'This is a lead magnet for their paid Creator College cohort. You most likely clicked an Instagram ad and gave an email, which is why you do not remember signing up. Nothing was charged — but check no card was entered.'},
+ fl63:{cat:'Real estate licence', what:'The state-mandated 63-hour course that actually earns the Florida Sales Associate licence.', term:'90-day access'},
+ viralyou:{cat:'Instagram & content', what:'Organic growth coaching from Sarah Snow.', term:'$197/mo subscription'},
+ aicreatorlab:{cat:'AI', what:'AI video and character creation — cinematic and faceless video, coaching and community.', term:'$57/mo subscription'}
+};
+DATA.forEach(function(i){
+  var x = INFO[i.id]; if (!x) return;
+  for (var k in x) i[k] = x[k];
+  /* a published term plus a known purchase date gives a real expiry date */
+  if (x.termDays && i.bought && !i.expires) {
+    var b = d(i.bought), e = new Date(b.getFullYear(), b.getMonth(), b.getDate() + x.termDays);
+    i.expires = e.getFullYear() + '-' + String(e.getMonth()+1).padStart(2,'0') + '-' + String(e.getDate()).padStart(2,'0');
+    i.expNote = x.termNote;
+  }
+});
+
+/* Her ordering, 2026-09-18: "I want the classes that are active" at the top,
+   grouped by category, ranked by what she will actually use most — and the
+   expired / unidentified / never-bought ones pushed below the line. Yesterday's
+   purchase leads, so its category sits first and byNewest floats it to row one. */
+var CAT_ORDER = ['YouTube & video','Instagram & content','AI','Real estate licence','Ads & traffic','Health'];
+var ACTIVE = {'new':1,'ready':1,'recover':1};
 
 var FILTERS = [
  {f:'all',      l:'All'},
@@ -640,9 +709,14 @@ function ageLabel(iso){
 function expiryState(it){
   if (!it.expires) return null;
   var left = daysBetween(NOW, d(it.expires));
-  if (left < 0)  return {cls:'bad',  txt:'Expired '+fmt(it.expires), kind:'expired'};
-  if (left <= 60) return {cls:'soon', txt:'Expires '+fmt(it.expires)+' · '+left+'d', kind:'soon'};
-  return {cls:'', txt:'Access until '+fmt(it.expires), kind:'ok'};
+  if (left < 0)   return {cls:'bad',  txt:'Ran out ' + fmt(it.expires), kind:'expired'};
+  if (left <= 45) return {cls:'soon', txt:left + (left===1?' day left':' days left'), kind:'soon', on:fmt(it.expires)};
+  /* she asked for a countdown in months rather than a date to decode */
+  var months = Math.round(left / 30.44);
+  return {cls: months <= 3 ? 'soon' : '',
+          txt: months + (months===1 ? ' month left' : ' months left'),
+          kind: months <= 3 ? 'soon' : 'ok',
+          on: fmt(it.expires)};
 }
 
 var LS = {
@@ -672,7 +746,10 @@ function rowHTML(it){
   else if (it.bought) tags.push('<span class="yr">'+fmt(it.bought)+'</span>');
   else tags.push('<span class="tag">No receipt on record</span>');
 
-  if (exp) tags.push('<span class="tag '+exp.cls+'">'+esc(exp.txt)+'</span>');
+  if (exp) {
+    tags.push('<span class="tag '+exp.cls+'">'+esc(exp.txt)+'</span>');
+    if (exp.on && exp.kind!=='expired') tags.push('<span class="tag">until '+exp.on+'</span>');
+  }
   if (age) tags.push('<span class="tag old">'+age+'</span>');
   if (it.price) tags.push('<span class="tag money">'+esc(it.price)+'</span>');
   if (it.lessons) tags.push('<span class="tag">'+it.lessons+' lessons</span>');
@@ -706,28 +783,45 @@ function byNewest(a,b){
   return d(b.bought) - d(a.bought);
 }
 
+function buildSections(){
+  var out = [], used = {};
+  function take(pred){ return DATA.filter(function(i){ return !used[i.id] && pred(i); }).sort(byNewest); }
+  function push(h, hint, rows){ if(rows.length){ rows.forEach(function(r){ used[r.id]=1; }); out.push({h:h,hint:hint,rows:rows}); } }
+
+  push('Happening today', 'has a clock on it', take(function(i){ return i.s==='live'; }));
+  CAT_ORDER.forEach(function(c){
+    push(c, '', take(function(i){ return ACTIVE[i.s] && i.cat===c; }));
+  });
+  push('Ran out — deal with these', '', take(function(i){ return i.s==='expired'; }));
+  push('Not sure what these are', 'open them and tell me which', take(function(i){ return ACTIVE[i.s] && i.cat==='Unidentified'; }));
+  push('Anything else still open', '', take(function(i){ return ACTIVE[i.s]; }));
+  push('Never bought', 'wishlist only', take(function(i){ return i.s==='wishlist'; }));
+  push('Refunded', 'you do not own this', take(function(i){ return i.s==='refunded'; }));
+  return out;
+}
+
 var lists = document.getElementById('lists');
-lists.innerHTML = GROUPS.map(function(g){
-  var rows = DATA.filter(function(i){ return i.s === g.s; }).sort(byNewest);
-  if (!rows.length) return '';
-  return '<section data-sec data-group="'+g.s+'">'
-    + '<div class="shead"><h3>'+g.h+'</h3>'
+lists.innerHTML = buildSections().map(function(g){
+  return '<section data-sec>'
+    + '<div class="shead"><h3>'+esc(g.h)+'</h3>'
     + (g.hint ? '<span class="hint">'+g.hint+'</span>' : '')
-    + '<span class="n">'+rows.length+'</span></div>'
-    + '<div class="glass-card list">'+rows.map(rowHTML).join('')+'</div></section>';
+    + '<span class="n">'+g.rows.length+'</span></div>'
+    + '<div class="glass-card list">'+g.rows.map(rowHTML).join('')+'</div></section>';
 }).join('');
 
 /* headline numbers */
-var owned    = DATA.filter(function(i){ return i.s==='new'||i.s==='ready'||i.s==='expired'; });
+var active   = DATA.filter(function(i){ return i.s==='new'||i.s==='ready'; });
+var spend    = DATA.reduce(function(sum,i){
+  var m = /US\$([0-9.]+)/.exec(i.price||'');
+  return sum + (m && !/\/mo/.test(i.price) ? parseFloat(m[1]) : 0);
+}, 0);
 var liveToday= DATA.filter(function(i){ return i.live && daysBetween(new Date(NOW.getFullYear(),NOW.getMonth(),NOW.getDate()), d(i.live.date)) === 0; });
 var expired  = DATA.filter(function(i){ var e=expiryState(i); return e && (e.kind==='expired'||e.kind==='soon'); });
-var monthly  = DATA.filter(function(i){ return i.s==='wishlist' && /\/mo/.test(i.price||''); })
-                   .reduce(function(sum,i){ return sum + parseFloat(String(i.price).replace(/[^0-9.]/g,'')); }, 0);
 
 document.getElementById('chips').innerHTML =
-    '<div class="metric-chip accent-peach"><span>Classes you have paid for</span><strong>'+owned.length+'</strong></div>'
+    '<div class="metric-chip accent-peach"><span>Active today</span><strong>'+active.length+'</strong></div>'
   + '<div class="metric-chip"><span>Expired or expiring</span><strong>'+expired.length+'</strong></div>'
-  + '<div class="metric-chip accent-pink"><span>Per month not signed up</span><strong>$'+monthly+'</strong></div>';
+  + '<div class="metric-chip accent-pink"><span>Confirmed spend</span><strong>$'+spend.toFixed(0)+'</strong></div>';
 
 /* filters */
 var seg = document.getElementById('seg');

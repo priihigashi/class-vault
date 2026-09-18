@@ -1,7 +1,7 @@
 /* Class Vault — offline shell.
    Cache-first for the handful of files that make up the page, so it opens
    from the home screen with no signal. Bump CACHE to ship an update. */
-const CACHE = 'class-vault-v6';
+const CACHE = 'class-vault-v7';
 const ASSETS = [
   './',
   './index.html',
